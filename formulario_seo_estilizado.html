@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario SEO</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 500px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        input[type="submit"]:hover {
+            background-color: #004494;
+        }
+    </style>
+</head>
+<body>
+    <form action="procesar-seo.php" method="POST">
+        <label for="titulo_h1">Título Principal (H1):</label>
+        <input type="text" id="titulo_h1" name="titulo_h1" maxlength="120" required>
+        <small>Máximo 120 caracteres.</small>
+
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion" maxlength="156" rows="4" required></textarea>
+        <small>Máximo 156 caracteres.</small>
+
+        <label for="contenido">Contenido (hasta 300 palabras):</label>
+        <textarea id="contenido" name="contenido" oninput="limitaPalabras(this, 300);" required></textarea>
+        <small>Hasta 300 palabras.</small>
+
+        <label for="meta_titulo">Meta Título:</label>
+        <input type="text" id="meta_titulo" name="meta_titulo" maxlength="50" required>
+        <small>Máximo 50 caracteres.</small>
+
+        <label for="meta_descripcion">Meta Descripción:</label>
+        <input type="text" id="meta_descripcion" name="meta_descripcion" maxlength="156" required>
+        <small>Máximo 156 caracteres.</small>
+
+        <label for="slug">Slug (URL):</label>
+        <input type="text" id="slug" name="slug" required>
+        <small>Formato: sitio-web/palabra-clave</small>
+
+        <input type="submit" value="Enviar">
+    </form>
+    <script>
+        function limitaPalabras(elemento, maxPalabras) {
+            var palabras = elemento.value.split(/\s+/);
+            if (palabras.length > maxPalabras) {
+                elemento.value = palabras.slice(0, maxPalabras).join(" ");
+            }
+        }
+    </script>
+</body>
+</html>
+    
